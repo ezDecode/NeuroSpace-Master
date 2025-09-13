@@ -8,10 +8,8 @@ NeuroSpace is a full‑stack application: Next.js 15 (React 19, TypeScript, Tail
 
 ## Architecture
 
-- Frontend: Next.js 15, React 19, TypeScript, Tailwind CSS, Framer Motion, Clerk
-- Backend: FastAPI (Python 3.9+), Uvicorn, Pydantic, Celery, Redis
-- AI: Nvidia NIM embeddings and LLMs, Pinecone vector DB
-- Infra: AWS S3, Supabase (PostgreSQL), Vercel (frontend), Railway/Render (backend)
+- Frontend: Next.js 15, React 19, TypeScript, Tailwind CSS, Clerk
+- Backend: FastAPI (Python 3.9+), Uvicorn
 
 ## Prerequisites
 
@@ -21,7 +19,7 @@ NeuroSpace is a full‑stack application: Next.js 15 (React 19, TypeScript, Tail
 
 ## Local Setup
 
-1) Install frontend deps
+1) Install frontend deps (minimal)
 
 ```bash
 cd frontend
@@ -29,7 +27,7 @@ npm install
 npm run dev
 ```
 
-2) Install backend deps
+2) Install backend deps (minimal)
 
 ```bash
 cd ../backend
