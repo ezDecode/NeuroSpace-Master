@@ -1,0 +1,580 @@
+{
+  "project": {
+    "name": "NeuroSpace",
+    "description": "AI-Powered Personal Knowledge Base - A modern, monochromatic AI-powered 'Second Brain' application with enhanced micro-interactions, seamless file processing, and intelligent document management.",
+    "version": "2.0.0",
+    "repository": "NeuroSpace",
+    "owner": "ezDecode",
+    "status": "Production Ready",
+    "design_philosophy": "Sophisticated monochromatic design system with pure black, white, and gray aesthetics. Enhanced micro-interactions provide smooth, meaningful animations throughout the user experience.",
+    "architecture": "Full-stack application with Next.js 15 frontend and FastAPI backend, integrated with cloud services for AI processing and data storage"
+  },
+  "tech_stack": {
+    "frontend": {
+      "framework": "Next.js 15",
+      "runtime": "React 19",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS",
+      "animations": "Framer Motion",
+      "authentication": "Clerk",
+      "icons": "Heroicons",
+      "file_upload": "React Dropzone",
+      "notifications": "React Hot Toast",
+      "markdown": "React Markdown"
+    },
+    "backend": {
+      "framework": "FastAPI",
+      "language": "Python 3.9+",
+      "async_runtime": "Uvicorn",
+      "validation": "Pydantic",
+      "task_queue": "Celery",
+      "cache": "Redis"
+    },
+    "ai_services": {
+      "embeddings": "Nvidia NIM API",
+      "vector_search": "Pinecone",
+      "models": "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+    },
+    "infrastructure": {
+      "file_storage": "AWS S3",
+      "database": "Supabase (PostgreSQL)",
+      "frontend_deployment": "Vercel",
+      "backend_deployment": "Railway/Render"
+    }
+  },
+  "environment_variables": {
+    "frontend": {
+      "required": [
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+        "CLERK_SECRET_KEY",
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "SUPABASE_ANON_KEY",
+        "NEXT_PUBLIC_BACKEND_URL"
+      ],
+      "optional": [
+        "FRONTEND_ORIGIN"
+      ]
+    },
+    "backend": {
+      "required": [
+        "AWS_ACCESS_KEY_ID",
+        "AWS_SECRET_ACCESS_KEY",
+        "AWS_REGION",
+        "AWS_S3_BUCKET_NAME",
+        "NVIDIA_NIM_API_KEY",
+        "PINECONE_API_KEY",
+        "PINECONE_ENVIRONMENT",
+        "SUPABASE_URL",
+        "SUPABASE_SERVICE_ROLE_KEY",
+        "CLERK_JWKS_URL",
+        "CLERK_ISSUER"
+      ],
+      "optional": [
+        "NVIDIA_NIM_BASE_URL",
+        "PINECONE_INDEX_NAME",
+        "BACKEND_API_KEY",
+        "APP_ENV",
+        "DEBUG",
+        "FRONTEND_ORIGIN",
+        "MAX_FILE_SIZE_MB"
+      ]
+    }
+  },
+  "dependencies": {
+    "frontend_package_json": {
+      "name": "neurospace",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint .",
+        "format": "prettier --write ."
+      },
+      "dependencies": {
+        "@aws-sdk/client-s3": "^3.872.0",
+        "@aws-sdk/s3-request-presigner": "^3.872.0",
+        "@clerk/nextjs": "^6.31.2",
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.1",
+        "@heroicons/react": "^2.1.5",
+        "@mui/icons-material": "^7.3.1",
+        "@mui/material": "^7.3.1",
+        "@pinecone-database/pinecone": "^6.1.2",
+        "@supabase/supabase-js": "^2.47.12",
+        "@tailwindcss/postcss": "^4.1.12",
+        "classnames": "^2.5.1",
+        "express-rate-limit": "^8.0.1",
+        "framer-motion": "^11.3.31",
+        "next": "^15.4.7",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "react-dropzone": "^14.2.3",
+        "react-hot-toast": "^2.4.1",
+        "react-markdown": "^9.0.3",
+        "remark-gfm": "^4.0.0",
+        "swr": "^2.3.6",
+        "tailwindcss": "^4.1.12",
+        "uuid": "^9.0.1"
+      },
+      "devDependencies": {
+        "@types/node": "24.3.0",
+        "@types/react": "19.1.10",
+        "@types/uuid": "^9.0.7",
+        "@typescript-eslint/eslint-plugin": "^7.8.0",
+        "@typescript-eslint/parser": "^7.8.0",
+        "eslint": "^8.57.0",
+        "eslint-config-next": "^14.2.3",
+        "eslint-config-prettier": "^9.1.0",
+        "prettier": "^3.3.3",
+        "typescript": "5.4.5"
+      }
+    },
+    "backend_requirements": [
+      "fastapi>=0.104.1",
+      "uvicorn[standard]>=0.24.0",
+      "python-multipart>=0.0.6",
+      "python-dotenv>=1.0.0",
+      "boto3>=1.34.0",
+      "requests>=2.31.0",
+      "httpx>=0.25.0",
+      "pypdf2>=3.0.1",
+      "python-docx>=1.1.0",
+      "pinecone>=5.0.0",
+      "supabase>=2.0.2",
+      "pydantic>=2.8.0",
+      "pydantic-settings>=2.4.0",
+      "python-jose[cryptography]>=3.3.0",
+      "passlib[bcrypt]>=1.7.4",
+      "pytest>=8.2.0",
+      "pytest-asyncio>=0.23.7",
+      "openai>=1.54.4",
+      "slowapi>=0.1.9",
+      "celery>=5.3.6",
+      "redis>=5.0.1",
+      "tenacity>=8.4.2",
+      "pybreaker>=0.7.0"
+    ]
+  },
+  "project_structure": {
+    "root_files": [
+      "package.json",
+      "next.config.mjs",
+      "tsconfig.json",
+      "tailwind.config.js",
+      "postcss.config.mjs",
+      "eslint.config.mjs",
+      "next-env.d.ts",
+      "Dockerfile",
+      "docker-compose.dev.yml",
+      "README.md",
+      ".env.example",
+      ".env.local.example"
+    ],
+    "frontend": {
+      "src/app": {
+        "layout.tsx": "Root layout with Clerk provider and global styles",
+        "page.tsx": "Landing page with hero section and features",
+        "globals.css": "Global styles and design system",
+        "api/": {
+          "upload/route.ts": "File upload endpoint",
+          "files/route.ts": "File management endpoints",
+          "process/route.ts": "File processing endpoints",
+          "chat/route.ts": "AI chat endpoints",
+          "chat/stream/route.ts": "Streaming chat endpoints"
+        },
+        "notebook/page.tsx": "Main notebook interface"
+      },
+      "src/components": {
+        "layout/": {
+          "ChatInterface.tsx": "Chat interface component",
+          "NotebookHeader.tsx": "Notebook header component",
+          "NotebookLayout.tsx": "Notebook layout wrapper",
+          "SourcesPanel.tsx": "Sources panel component",
+          "StudioPanel.tsx": "Studio panel component"
+        },
+        "ui/": {
+          "AuthTriggers.tsx": "Authentication trigger components",
+          "FeatureCard.tsx": "Feature card component",
+          "GlassButton.tsx": "Glass button component",
+          "Navbar.tsx": "Navigation bar component",
+          "Testimonials.tsx": "Testimonials component",
+          "Timeline.tsx": "Timeline component"
+        },
+        "MaybeClerkProvider.tsx": "Conditional Clerk provider",
+        "MaybeSigned.tsx": "Conditional signed in/out components"
+      },
+      "src/hooks": {
+        "useAuth.ts": "Authentication hook",
+        "useChat.ts": "Chat functionality hook",
+        "useUpload.ts": "File upload hook"
+      },
+      "src/utils": {
+        "apiClient.ts": "API client utilities",
+        "logger.ts": "Logging utilities"
+      }
+    },
+    "backend": {
+      "main.py": "FastAPI app entry point",
+      "app/": {
+        "__init__.py": "FastAPI app configuration and startup",
+        "config.py": "Environment configuration with Pydantic",
+        "deps.py": "Dependency injection utilities",
+        "routes/": {
+          "files.py": "File management routes",
+          "processing.py": "File processing routes",
+          "query.py": "AI query and search routes",
+          "chat.py": "Chat interface routes"
+        },
+        "services/": {
+          "s3_service.py": "AWS S3 integration service",
+          "text_extractor.py": "Text extraction service (PDF, DOCX, TXT)",
+          "nim_service.py": "Nvidia NIM API service for embeddings",
+          "pinecone_service.py": "Pinecone vector database service",
+          "supabase_service.py": "Supabase database service"
+        },
+        "models/": {
+          "file.py": "Pydantic models for file operations"
+        },
+        "tasks/": {
+          "celery_app.py": "Celery configuration",
+          "processing_tasks.py": "Background processing tasks"
+        }
+      },
+      "requirements.txt": "Python dependencies",
+      "supabase_schema.sql": "Database schema",
+      "Dockerfile": "Docker configuration for backend"
+    },
+    "docs": {
+      "README.md": "Documentation overview",
+      "ARCHITECTURE.md": "Architecture documentation",
+      "CODEBASE_SUMMARY.md": "Detailed codebase summary"
+    }
+  },
+  "database_schema": {
+    "files_table": {
+      "columns": {
+        "id": "UUID PRIMARY KEY DEFAULT gen_random_uuid()",
+        "file_key": "TEXT NOT NULL",
+        "file_name": "TEXT NOT NULL",
+        "user_id": "TEXT NOT NULL",
+        "file_size": "BIGINT DEFAULT 0",
+        "content_type": "TEXT DEFAULT ''",
+        "status": "TEXT DEFAULT 'uploaded'",
+        "chunks_count": "INTEGER DEFAULT 0",
+        "embedding_count": "INTEGER DEFAULT 0",
+        "last_error": "TEXT",
+        "created_at": "TIMESTAMP WITH TIME ZONE DEFAULT NOW()",
+        "processed_at": "TIMESTAMP WITH TIME ZONE"
+      },
+      "indexes": [
+        "idx_files_user_id ON files(user_id)",
+        "idx_files_status ON files(status)"
+      ]
+    },
+    "processing_jobs_table": {
+      "columns": {
+        "id": "UUID PRIMARY KEY DEFAULT gen_random_uuid()",
+        "file_id": "UUID REFERENCES files(id) ON DELETE CASCADE",
+        "user_id": "TEXT NOT NULL",
+        "status": "TEXT DEFAULT 'queued'",
+        "created_at": "TIMESTAMP WITH TIME ZONE DEFAULT NOW()",
+        "completed_at": "TIMESTAMP WITH TIME ZONE"
+      },
+      "indexes": [
+        "idx_processing_jobs_file_id ON processing_jobs(file_id)",
+        "idx_processing_jobs_user_id ON processing_jobs(user_id)",
+        "idx_processing_jobs_status ON processing_jobs(status)"
+      ]
+    }
+  },
+  "key_features": {
+    "authentication": {
+      "provider": "Clerk",
+      "features": ["JWT authentication", "Route protection", "User management"],
+      "security": ["Row-Level Security", "User data isolation", "Secure token handling"]
+    },
+    "file_management": {
+      "upload": "Drag & drop interface with progress tracking",
+      "formats": ["PDF", "DOC", "DOCX", "TXT", "MD", "RTF"],
+      "storage": "AWS S3 with signed URLs",
+      "processing": "Real-time text extraction and chunking"
+    },
+    "ai_integration": {
+      "embeddings": "Nvidia NIM API for vector generation",
+      "search": "Pinecone similarity search",
+      "chat": "Context-aware AI responses with streaming",
+      "models": "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+    },
+    "design_system": {
+      "theme": "Monochromatic (black, white, gray)",
+      "animations": "Framer Motion micro-interactions",
+      "responsive": "Mobile-first design",
+      "accessibility": "WCAG compliant"
+    }
+  },
+  "api_endpoints": {
+    "frontend_api": {
+      "/api/upload": "File upload with S3 integration",
+      "/api/files": "File management (CRUD operations)",
+      "/api/process": "File processing initiation",
+      "/api/chat": "AI chat interface",
+      "/api/chat/stream": "Streaming chat responses"
+    },
+    "backend_api": {
+      "/api/files": ["GET", "POST", "DELETE"],
+      "/api/processing": ["POST"],
+      "/api/query": ["POST", "GET /health"],
+      "/api/chat": ["POST"],
+      "/health": "Health check endpoint"
+    }
+  },
+  "configuration_files": {
+    "next_config": {
+      "experimental": {
+        "serverComponentsExternalPackages": ["@aws-sdk/client-s3"]
+      }
+    },
+    "tailwind_config": {
+      "content": ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+      "theme": {
+        "extend": {
+          "colors": {
+            "gray": "Monochromatic gray scale from 50 to 900"
+          }
+        }
+      }
+    },
+    "typescript_config": {
+      "compilerOptions": {
+        "target": "ES2017",
+        "lib": ["dom", "dom.iterable", "ES6"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [{"name": "next"}],
+        "baseUrl": ".",
+        "paths": {"@/*": ["./src/*"]}
+      }
+    }
+  },
+  "development_setup": {
+    "prerequisites": [
+      "Node.js 18+",
+      "Python 3.9+",
+      "AWS Account (S3 bucket)",
+      "Nvidia NIM API access",
+      "Pinecone account",
+      "Supabase account",
+      "Clerk account"
+    ],
+    "installation_steps": [
+      "Clone repository",
+      "Install frontend dependencies: npm install",
+      "Install backend dependencies: pip install -r backend/requirements.txt",
+      "Configure environment variables",
+      "Run database schema in Supabase",
+      "Start development servers"
+    ],
+    "development_commands": {
+      "frontend": "npm run dev (http://localhost:3000)",
+      "backend": "cd backend && python main.py (http://localhost:8000)"
+    }
+  },
+  "deployment": {
+    "frontend": {
+      "platform": "Vercel",
+      "build_command": "npm run build",
+      "output_directory": ".next"
+    },
+    "backend": {
+      "platforms": ["Railway", "Render"],
+      "start_command": "python main.py",
+      "environment": "production"
+    },
+    "database": {
+      "platform": "Supabase",
+      "features": ["Row-Level Security", "Real-time subscriptions", "Auto-backups"]
+    }
+  },
+  "security_features": [
+    "Input validation and sanitization",
+    "File type and size restrictions",
+    "Path traversal prevention",
+    "JWT token validation",
+    "CORS configuration",
+    "Security headers middleware",
+    "Environment variable validation"
+  ],
+  "monitoring_and_health": {
+    "health_endpoints": ["/health", "/api/query/health"],
+    "logging": "Structured logging with different levels",
+    "error_handling": "Comprehensive error handling with user-friendly messages",
+    "performance_monitoring": "Response time tracking and metrics"
+  },
+  "design_tokens": {
+    "colors": {
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "gray_scale": {
+        "50": "#FAFAFA",
+        "100": "#F5F5F5",
+        "200": "#E5E5E5",
+        "300": "#D4D4D4",
+        "400": "#A3A3A3",
+        "500": "#737373",
+        "600": "#525252",
+        "700": "#404040",
+        "800": "#262626",
+        "900": "#171717"
+      }
+    },
+    "animations": {
+      "duration": "300ms",
+      "easing": "ease-out",
+      "hover_effects": ["scale", "lift", "glow"],
+      "transitions": ["fade-in", "slide", "transform"]
+    }
+  },
+  "testing": {
+    "backend_tests": [
+      "Integration tests for services",
+      "API endpoint testing",
+      "Database connection testing",
+      "File processing pipeline testing"
+    ],
+    "frontend_tests": [
+      "Component testing",
+      "Authentication flow testing",
+      "File upload testing",
+      "Responsive design testing"
+    ]
+  },
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Setup Development Environment",
+      "description": "Install Node.js 18+, Python 3.9+, and create accounts for AWS, Nvidia NIM, Pinecone, Supabase, and Clerk",
+      "category": "prerequisites",
+      "estimated_time": "30-60 minutes"
+    },
+    {
+      "id": 2,
+      "title": "Clone and Install Dependencies",
+      "description": "Clone the repository, run 'npm install' for frontend and 'pip install -r requirements.txt' for backend",
+      "category": "installation",
+      "estimated_time": "10-15 minutes"
+    },
+    {
+      "id": 3,
+      "title": "Configure Environment Variables",
+      "description": "Set up all required environment variables for both frontend (.env.local) and backend (.env) based on the provided templates",
+      "category": "configuration",
+      "estimated_time": "20-30 minutes"
+    },
+    {
+      "id": 4,
+      "title": "Setup Database Schema",
+      "description": "Run the SQL schema from backend/supabase_schema.sql in Supabase SQL Editor to create required tables",
+      "category": "database",
+      "estimated_time": "5-10 minutes"
+    },
+    {
+      "id": 5,
+      "title": "Configure AWS S3 Bucket",
+      "description": "Create S3 bucket, configure CORS policy from s3-cors-config.json, and set up bucket policy from s3-bucket-policy.json",
+      "category": "storage",
+      "estimated_time": "15-20 minutes"
+    },
+    {
+      "id": 6,
+      "title": "Setup Pinecone Index",
+      "description": "Create Pinecone index with dimension 1024, cosine metric, and serverless specification in the configured region",
+      "category": "vector_database",
+      "estimated_time": "5-10 minutes"
+    },
+    {
+      "id": 7,
+      "title": "Configure Clerk Authentication",
+      "description": "Set up Clerk application, configure JWT settings, and update environment variables with Clerk keys",
+      "category": "authentication",
+      "estimated_time": "15-20 minutes"
+    },
+    {
+      "id": 8,
+      "title": "Start Development Servers",
+      "description": "Start frontend with 'npm run dev' and backend with 'cd backend && python main.py', verify both are running",
+      "category": "development",
+      "estimated_time": "5 minutes"
+    },
+    {
+      "id": 9,
+      "title": "Test File Upload Flow",
+      "description": "Test the complete file upload, processing, and AI query flow to ensure all integrations are working",
+      "category": "testing",
+      "estimated_time": "10-15 minutes"
+    },
+    {
+      "id": 10,
+      "title": "Deploy to Production",
+      "description": "Deploy frontend to Vercel, backend to Railway/Render, configure production environment variables",
+      "category": "deployment",
+      "estimated_time": "30-45 minutes"
+    }
+  ],
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Environment Variables Missing",
+        "solution": "Ensure all required environment variables are set according to the configuration"
+      },
+      {
+        "issue": "Database Connection Failed",
+        "solution": "Check Supabase credentials and ensure RLS policies are configured"
+      },
+      {
+        "issue": "Pinecone Dimension Mismatch",
+        "solution": "Delete and recreate Pinecone index with dimension 1024 to match NIM embeddings"
+      },
+      {
+        "issue": "File Upload Fails",
+        "solution": "Verify S3 bucket permissions and CORS configuration"
+      },
+      {
+        "issue": "AI Processing Fails",
+        "solution": "Check Nvidia NIM API key and ensure proper authentication headers"
+      },
+      {
+        "issue": "JWT Authentication Issues",
+        "solution": "Verify Clerk configuration and JWT token validation settings"
+      }
+    ]
+  },
+  "performance_considerations": [
+    "File upload with progress tracking",
+    "Streaming responses for AI chat",
+    "Vector search optimization",
+    "Database query optimization",
+    "CDN for static assets",
+    "Image optimization",
+    "Code splitting and lazy loading"
+  ],
+  "scalability_notes": [
+    "Horizontal scaling for backend services",
+    "Database connection pooling",
+    "Caching strategies for frequently accessed data",
+    "Background job processing with Celery",
+    "Load balancing for high traffic",
+    "CDN for global content delivery"
+  ]
+}
