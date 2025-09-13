@@ -1,6 +1,7 @@
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from auth import verify_clerk_jwt
 
 
 APP_ENV = os.getenv("APP_ENV", "development")
@@ -22,6 +23,11 @@ app.add_middleware(
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok", "env": APP_ENV}
+
+
+@app.get("/me")
+async def me(claims: dict = Depends(verify_clerk_jwt)) -> dict:
+    return {"claims": claims}
 
 
 if __name__ == "__main__":

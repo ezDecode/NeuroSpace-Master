@@ -66,6 +66,19 @@ Backend required:
 - PINECONE_API_KEY, PINECONE_ENVIRONMENT
 - SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
 - CLERK_JWKS_URL, CLERK_ISSUER
+## Authentication
+
+Frontend (Clerk):
+
+- Add keys to `frontend/.env.local`
+- Routes available: `/sign-in`, `/sign-up`
+- Protected route: `/dashboard` (enforced by `middleware.ts`)
+
+Backend (JWT verification):
+
+- Set `CLERK_JWKS_URL` and `CLERK_ISSUER` in `backend/.env`
+- `GET /me` returns token claims when called with `Authorization: Bearer <token>`
+
 
 ## Scripts
 
